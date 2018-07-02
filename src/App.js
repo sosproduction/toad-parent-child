@@ -13,9 +13,28 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Todo:[{name:"Art",items:[{item:'Todo itme #1',isDone:false},{item:'Todo itme #2',isDone:true},{item:'aaaa',isDone:true},{item:'dddd',isDone:true}
-    ]},{name:"Music",items:[{item:'Todo itme #1',isDone:false},{item:'Todo itme #2',isDone:true},{item:'Todo itme #3',isDone:true}
-    ]}],filter:[{keyword:'',Status:"SHOW_ALL"}],selectedCatelog:"0"};
+      Todo:[
+        { name:"Art", items: [
+            { item: 'Work on glazing technique', isDone:false },
+            { item: 'Prank call Dali and hang up',isDone:true },
+            { item: 'Prepare new Masonite panels',isDone:true },
+            { item: 'Purchase sable brush',isDone:true }]
+        },
+        { name:"Music", items: [
+            { item: 'Work on Symphony', isDone:false },
+            { item: 'Finish Berklee class',isDone:true },
+            { item: 'Practice guitar', isDone:true },
+            { item: 'Build new studio', isDone:true }]
+        },
+        { name:"Writing",items: [
+            { item: 'Finish Oldtown structure', isDone:false },
+            { item: 'Work on Suitcase middle part', isDone:true },
+            { item: 'Puchase some index cards', isDone:true }]
+        }
+      ],filter:[
+            { keyword:'', Status:"SHOW_ALL" }],
+              selectedCatelog:"0"
+    };
 
     // ES6 classes do not autobind 
     this.updateItems = this.updateItems.bind(this);
