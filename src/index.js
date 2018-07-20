@@ -4,6 +4,6 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('todo'));
+ReactDOM.render(<App />, document.getElementById('task'));
 registerServiceWorker();
 

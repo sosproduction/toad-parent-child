@@ -1,17 +1,17 @@
 import React from 'react';
 
 
-class ToDoCatelog extends React.Component {
+class Project extends React.Component {
 
   constructor(props) {
     super(props);
    
     // ES6 classes do not autobind
-    this.changeTodo = this.changeTodo.bind(this);
+    this.changeTask = this.changeTask.bind(this);
     this.checkActive = this.checkActive.bind(this);
   }
 
-  changeTodo(e) {
+  changeTask(e) {
     this.props.onSelected( e.currentTarget.dataset.id);
   }
   
@@ -30,7 +30,9 @@ class ToDoCatelog extends React.Component {
   render() { 
   
     // var selectedID = this.props.selectedID;
-    var allitems =this.props.Todos;
+    var allitems =this.props.Tasks;
+
+    console.log(allitems);
     
     return <div className="list-group">
     {
@@ -45,7 +47,7 @@ class ToDoCatelog extends React.Component {
       _class =  "list-group-item ";
     }
       return (
-        <button key={i} data-id={i} className={_class} onClick={this.changeTodo} ><span className="badge" >{item.items.length}</span>{item.name}</button>
+        <button key={i} data-id={i} className={_class} onClick={this.changeTask} ><span className="badge" >{item.items.length}</span>{item.name}</button>
         // This will revert to a href once router is in place.  made into button to satsify lint for now
         // <a href="#" key={i} data-id={i} className={_class} onClick={this.changeTodo} ><span className="badge" >{item.items.length}</span>{item.name}</a>
       )
@@ -53,4 +55,4 @@ class ToDoCatelog extends React.Component {
   }
 };
 
-export default ToDoCatelog;
+export default Project;

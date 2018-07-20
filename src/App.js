@@ -1,69 +1,89 @@
 import React from 'react';
 
-import ToDoBanner from './components/ToDoBanner';
-import ToDoList from './components/ToDoList';
-import ToDoForm from './components/ToDoForm';
-import ToDoFilter from './components/ToDoFilter';
-import ToDoCatalogForm from './components/ToDoCatalogForm';
-import ToDoCatelog from './components/ToDoCatelog';
+import TaskBanner from './components/TaskBanner';
+import TaskList from './components/TaskList';
+import TaskForm from './components/TaskForm';
+import TaskFilter from './components/TaskFilter';
+import ProjectForm from './components/ProjectForm';
+import Project from './components/Project';
+import CalendarHeatmap from 'react-calendar-heatmap';
+import Moment from 'react-moment';
+import 'moment-timezone';
+import axios from 'axios';
+
 import './App.css';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    /*
     this.state = {
-      Todo:[
+         Todo: [],
+     }
+     axios.get('tasks.json') 
+      .then(res => {
+          this.setState({ Todo: res.data });  
+     });
+    */
+
+    
+    this.state = {
+      Task:[
         { name:"Art", items: [
-            { item: 'Work on glazing technique', isDone:false },
-            { item: 'Prank call Dali and hang up',isDone:true },
-            { item: 'Prepare new Masonite panels',isDone:true },
-            { item: 'Purchase sable brush',isDone:true }]
+            { item: 'Work on glazing technique', isDone: false, dateCompleted: "" },
+            { item: 'Prank call Dali and hang up', isDone:true, dateCompleted: "07/15/2018" },
+            { item: 'Prepare new Masonite panels', isDone:true, dateCompleted: "07/15/2018" },
+            { item: 'Purchase sable brush', isDone:true, dateCompleted: "07/15/2018" }]
         },
         { name:"Music", items: [
-            { item: 'Work on Symphony', isDone:false },
-            { item: 'Finish Berklee class',isDone:true },
-            { item: 'Practice guitar', isDone:true },
-            { item: 'Build new studio', isDone:true }]
+            { item: 'Work on Symphony', isDone:false, dateCompleted: "" },
+            { item: 'Finish Berklee class',isDone:true, dateCompleted: "07/12/2018" },
+            { item: 'Practice guitar', isDone:true, dateCompleted: "07/10/2018" },
+            { item: 'Build new studio', isDone:true, dateCompleted: "07/10/2108" }]
         },
         { name:"Writing",items: [
-            { item: 'Finish Oldtown structure', isDone:false },
-            { item: 'Work on Suitcase middle part', isDone:true },
-            { item: 'Puchase some index cards', isDone:true }]
+            { item: 'Finish Oldtown structure', isDone:false, dateCompleted: "" },
+            { item: 'Work on Suitcase middle part', isDone:true, dateCompleted: "07/08/2018" },
+            { item: 'Puchase some index cards', isDone:true, dataCompleted: "07/08/2018" }]
         }
       ],filter:[
             { keyword:'', Status:"SHOW_ALL" }],
-              selectedCatelog:"0"
+              selectedProject:"0"
     };
+  
+
+    console.log(this.state);
 
     // ES6 classes do not autobind 
     this.updateItems = this.updateItems.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.filterItem = this.filterItem.bind(this);
     this.searchItem = this.searchItem.bind(this);
-    this.AddCatalog = this.AddCatalog.bind(this);
-    this.setSelectedCatalog = this.setSelectedCatalog.bind(this);
+    this.AddProject = this.AddProject.bind(this);
+    this.setSelectedProject = this.setSelectedProject.bind(this);
   }
   
   updateItems(newItem) {
   
     var item = {item:newItem,isDone:false};
   
-    var newtodo = this.state.Todo;
-    var allItems = this.state.Todo[this.state.selectedCatelog].items.concat([item]);
-    newtodo[this.state.selectedCatelog].items = allItems;
+    var newtask = this.state.Task;
+    var allItems = this.state.Task[this.state.selectedProject].items.concat([item]);
+    newtask[this.state.selectedProject].items = allItems;
     this.setState({
-      Todo: newtodo
+      Task: newtask
     });
   }
   
   deleteItem(index) {
-    var newtodo = this.state.Todo;
-    var allItems = this.state.Todo[this.state.selectedCatelog].items.slice(); //copy array
+    var newtask = this.state.Task;
+    var allItems = this.state.Task[this.state.selectedProject].items.slice(); //copy array
     allItems.splice(index, 1); //remove element
-    newtodo[this.state.selectedCatelog].items = allItems;
+    newtask[this.state.selectedProject].items = allItems;
     this.setState({
-      Todo: newtodo
+      Task: newtask
     });
   }
   
@@ -83,35 +103,68 @@ class App extends React.Component {
     });
   }
   
-  AddCatalog(newCatalog) {
-    var Catalog = {name:newCatalog,items:[{item:'New todo item',isDone:false}]};
-    var newtodo = this.state.Todo.concat([Catalog]);
+  AddProject(newProject) {
+    var Project = {
+      name: newProject,
+      items:[{
+        item:'New task item',
+        isDone:false}
+      ]};
+      
+    var newtask = this.state.Task.concat([Project]);
     this.setState({
-      Todo: newtodo
+      Task: newtask
     });
   }
   
-  setSelectedCatalog(index) {
+  setSelectedProject(index) {
     // Don't modify state directly, but this below isn't needed at all?
     // this.state.selectedCatelog = index;
     this.setState({
-      selectedCatelog: index
+      selectedProject: index
     });
   }
+
   
   render() {
     return (
+
       <div className="row">
+
+
+           <Moment interval={30000}>
+                1976-04-19T12:59-0500
+            </Moment>
+
+
         <div className="col-xs-3">
-                      <ToDoCatalogForm onFormSubmit = {this.AddCatalog} />
-                      <ToDoCatelog selectedID = {this.state.selectedCatelog} onSelected={this.setSelectedCatalog} Todos = {this.state.Todo} />
+            <ProjectForm onFormSubmit = {this.AddProject} />
+            <Project selectedID = {this.state.selectedProject} onSelected={this.setSelectedProject} Tasks = {this.state.Task} />
         </div>
         <div className="col-xs-8">
-          <ToDoBanner/>
-          <ToDoFilter onFilter = {this.filterItem} onSearch = {this.searchItem} filter={this.state.filter}/>
-          <ToDoForm onFormSubmit = {this.updateItems} />
-          <ToDoList  items = {this.state.Todo[this.state.selectedCatelog].items} filter = {this.state.filter} onDelete={this.deleteItem}/>
+          <TaskBanner/>
+          <TaskFilter onFilter = {this.filterItem} onSearch = {this.searchItem} filter={this.state.filter}/>
+          <TaskForm onFormSubmit = {this.updateItems} />
+          <TaskList items = {this.state.Task[this.state.selectedProject].items} filter = {this.state.filter} onDelete={this.deleteItem}/>
         </div>
+
+        <CalendarHeatmap
+          startDate={new Date('2018-01-01')}
+          endDate={new Date('2018-12-31')}
+          values={[
+            { date: '2018-07-01', count: 1 },
+            { date: '2018-02-22', count: 2 },
+            { date: '2018-06-30', count: 3 },
+            { date: '2018-07-22', count: 4 }
+          ]}
+           classForValue={(value) => {
+            if (!value) {
+              return 'color-empty';
+            }
+            return `color-scale-${value.count}`;
+          }}
+        />
+
       </div>
     );
   }

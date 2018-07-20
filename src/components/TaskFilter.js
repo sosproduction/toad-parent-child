@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class ToDoFilter extends React.Component {
+class TaskFilter extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,7 +19,7 @@ class ToDoFilter extends React.Component {
       return(
         <div className="row">
             <div className="col-xs-7">
-              <div id="todo-filter" className="input-group">
+              <div id="task-filter" className="input-group">
                 <span className="input-group-btn">
                   <button className="btn btn-default" type="button"><span className="glyphicon glyphicon-search"></span></button>
                 </span>
@@ -38,4 +38,4 @@ class ToDoFilter extends React.Component {
   }
 };
   
-export default ToDoFilter;
+export default TaskFilter;

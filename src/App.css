@@ -60,7 +60,7 @@ p, ul {
 ul {
   padding-left: 30px;
 }
-#todo-filter{
+#task-filter{
    
 }
 li.placeholder { background: rgb(255,240,120);}
@@ -78,32 +78,32 @@ li.placeholder:before {
   margin-top: 30px;
 }
 
-.todo-filter {
+.task-filter {
   margin-bottom: 25px;
 }
 
-.todo-filter>li>a{
+.task-filter>li>a{
   padding: 8px 12px;
   font-size: 12px;
 }
 
-#todoAdd {
+#taskAdd {
   margin-left: 40px;
 }
 
-.todoField{
+.taskField{
   padding-left: 5px;
   font-size: 20px;
   width:80%;
   float:left;
 }
 
-#newTodoField{
+#newTaskField{
   margin: 20px;
   width: 75%;
 }
 
-.newTodoCatalogField{
+.newProjectField{
    margin-bottom: 5px;
     margin-left: 15px;
     padding-left: 5px;
@@ -111,15 +111,15 @@ li.placeholder:before {
     width: 70%;
     float: left;
 }
-#todoSubmit{
+#taskSubmit{
   margin-top: -5px;
 }
 
-.todoTask{
+.taskTask{
   margin-bottom: 20px;
 }
 
-.todoName{
+.taskName{
   font-size: 20px;
   border-bottom: 1px lightgray solid;
   padding-bottom:5px;
@@ -140,3 +140,65 @@ li.placeholder:before {
 .edit-in-place.active input {
   display: inline-block;
 }
+
+
+
+
+/*
+ * react-calendar-heatmap styles
+ *
+ * All of the styles in this file are optional and configurable!
+ * The github and gitlab color scales are provided for reference.
+ */
+
+.react-calendar-heatmap text {
+  font-size: 10px;
+  fill: #aaa;
+}
+
+.react-calendar-heatmap .react-calendar-heatmap-small-text {
+  font-size: 5px;
+}
+
+.react-calendar-heatmap rect:hover {
+  stroke: #555;
+  stroke-width: 1px;
+}
+
+/*
+ * Default color scale
+ */
+
+.react-calendar-heatmap .color-empty {
+  fill: #eeeeee;
+}
+
+.react-calendar-heatmap .color-filled {
+  fill: #8cc665;
+}
+
+/*
+ * Github color scale
+ */
+
+.react-calendar-heatmap .color-github-0 {
+  fill: #eeeeee;
+}
+.react-calendar-heatmap .color-github-1 {
+  fill: #d6e685;
+}
+.react-calendar-heatmap .color-github-2 {
+  fill: #8cc665;
+}
+.react-calendar-heatmap .color-github-3 {
+  fill: #44a340;
+}
+.react-calendar-heatmap .color-github-4 {
+  fill: #1e6823;
+}
+
+
+.react-calendar-heatmap .color-scale-1 { fill: #d6e685; }
+.react-calendar-heatmap .color-scale-2 { fill: #8cc665; }
+.react-calendar-heatmap .color-scale-3 { fill: #44a340; }
+.react-calendar-heatmap .color-scale-4 { fill: #1e6823; }

@@ -1,12 +1,12 @@
 import React from 'react';
-import ToDoListItem from './ToDoListItem';
+import Task from './Task';
 
 
 var placeholder = document.createElement("li");
 placeholder.className = "placeholder";
 
 
-class ToDoList extends React.Component {
+class TaskList extends React.Component {
   constructor(props) {
     super(props);
  
@@ -71,13 +71,19 @@ class ToDoList extends React.Component {
   
   render() {
     
-    var createItem = function(itemText,i) {
+    var createItem = function(itemText, i) {
     
       return (
-        <ToDoListItem key={i} value={i} onDragEnd={this.DragEnd}
-          onDragStart={this.DragStart} onRemove = {this.Remove}>{itemText}</ToDoListItem>
+        <Task 
+          key={i} 
+          value={i} 
+          onDragEnd={this.DragEnd}
+          onDragStart={this.DragStart} 
+          onRemove = {this.Remove}>{itemText}
+        </Task>
       );
     };
+
     var allitems = this.props.items;
           // Here is the filter function 
     var status = this.props.filter[0].Status;
@@ -111,4 +117,4 @@ class ToDoList extends React.Component {
   }
 };
   
-export default ToDoList;
+export default TaskList;

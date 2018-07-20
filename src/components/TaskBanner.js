@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ToDoBanner extends React.Component {
+class TaskBanner extends React.Component {
   render() {
     return ( 
      <h3>TaskToad</h3>
@@ -8,4 +8,4 @@ class ToDoBanner extends React.Component {
   }
 };
 
-export default ToDoBanner;
+export default TaskBanner;

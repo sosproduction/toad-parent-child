@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class ToDoListItem extends React.Component {
+class Task extends React.Component {
   constructor(props) {
     super(props);
  
@@ -37,11 +37,16 @@ class ToDoListItem extends React.Component {
     if(!this.props.children.isDone)
     _style ="none";
     return (
-      <li data-id={this.props.value} 
-          key={this.props.value} draggable="true" onDragEnd={this.DragEndHandler}
-        onDragStart={this.DragStartHandler}><button type="button" className="close pull-right" aria-hidden="true" onClick={this.RemoveHandler}>&times;</button><input type="checkbox" onChange={this.ChangeHandler} defaultChecked={this.props.children.isDone} /><span style={{"textDecoration": _style}}>{this.props.children.item}</span></li>
+      <li data-id = {this.props.value} 
+          key = {this.props.value}
+          draggable = "true" 
+          onDragEnd={this.DragEndHandler}
+          onDragStart={this.DragStartHandler}>
+          <button type="button" className="close pull-right" aria-hidden="true" onClick={this.RemoveHandler}>&times;</button>
+          <input type="checkbox" onChange={this.ChangeHandler} defaultChecked={this.props.children.isDone} /><span style={{"textDecoration": _style}}>{this.props.children.item}</span>
+      </li>
     );
   }
 };
 
-export default ToDoListItem;
+export default Task;
